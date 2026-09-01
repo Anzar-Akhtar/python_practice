@@ -29,7 +29,7 @@ while True:
             print("No Notes found!")
 
     elif choice == "3":
-        print("GoodBye, Thank You!")
+        print("GoodBye, Thank Youdd!")
         break
 
     else:
