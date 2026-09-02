@@ -24,7 +24,7 @@ while True:
             with open("expense.txt", "r") as file:
                 expenses = file.read().splitlines()
 
-            print("\n ==== EXPENSES ====")
+            print("\n === EXPENSES LIST ===")
 
             for expense in expenses:
                 data = expense.split("|")
