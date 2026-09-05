@@ -1,41 +1,41 @@
-# class Car:
-#     pass
+class Car:
+    pass
 
 
-# car1 = Car()
-# car2 = Car()
+car1 = Car()
+car2 = Car()
 
-# print(car1)
-# print(car2)
-
-
-
-# class Student:
-#     pass
-
-# student1 = Student()
-
-# student1.name = "Anzar"
-# student1.age = 20
-# student1.course = "BCA"
-
-
-# print(student1.name)
-# print(student1.age)
-# print(student1.course)
+print(car1)
+print(car2)
 
 
 
-# class Car:
-#     pass
+class Student:
+    pass
 
-# car1 = Car()
+student1 = Student()
 
-# car1.brand = "Brand: Toyota"
-# car1.model = "Model: Fortuner"
-# car1.price = "Price: 4000000"
+student1.name = "Anzar"
+student1.age = 20
+student1.course = "BCA"
 
-# print(car1.brand)
+
+print(student1.name)
+print(student1.age)
+print(student1.course)
+
+
+
+class Car:
+    pass
+
+car1 = Car()
+
+car1.brand = "Brand: Toyota"
+car1.model = "Model: Fortuner"
+car1.price = "Price: 4000000"
+
+print(car1.brand)
 # print(car1.model)
 # print(car1.price)
 
