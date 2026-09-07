@@ -73,7 +73,7 @@ print("\n")
 
 car2.show_details()
 car2.start()
-# car2.stop()
+car2.stop()
 
 
 
@@ -109,3 +109,25 @@ print("\n")
 student2.show_details()
 student2.study()
 student2.sleep()
+
+
+
+class Employee:
+
+    company = "Google"
+
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    def show_details(self):
+        print(f"Name: {self.name}")
+        print(f"Salary: {self.salary}")
+        print(f"Company: {self.company}")
+
+em1 = Employee("Anzar", 30000)
+em2 = Employee("Atah", 35000)
+
+em1.show_details()
+print("\n")
+em2.show_details()
