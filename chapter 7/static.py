@@ -103,7 +103,7 @@ class Eligible:
 result1 = Eligible.check_eligibility(20)
 result2 = Eligible.check_eligibility(15)
 print(result1)
-# print(result2)
+print(result2)
 
 
 class Bank:
@@ -121,5 +121,22 @@ class Bank:
         print(f"Account Balance: {self.acc_bal}")
         print(f"Bank Name: {self.bank_name}")
 
+    @classmethod
+    def change_bank_name(cls, new_bank_name):
+        cls.bank_name = new_bank_name
 
-    
+    @staticmethod
+    def is_valid_amount(amount):
+        if amount > 0:
+            print("Valid amount.")
+        else:
+            print("Invalid amount.")
+
+
+customer1 = Bank("Anzar", "123456789", 10000)
+customer1.show_details()
+print("\n")
+Bank.change_bank_name("XYZ Bank")
+customer1.show_details()
+print("\n")
+customer1.is_valid_amount(5000)
