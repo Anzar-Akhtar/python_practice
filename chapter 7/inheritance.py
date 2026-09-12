@@ -78,3 +78,13 @@ dog1 = Dog("Tommy", "German Shepherd")
 
 print(dog1.name)
 print(dog1.breed)
+
+
+
+class Person:
+
+    def __init__(self, name, age, course):
+        self.name = name
+        self.age = age
+        self.course = course
+        
