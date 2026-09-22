@@ -2,7 +2,7 @@ expenses = []
 
 while True:
 
-    print("==== EXPENSE TRACKER ====")
+    print("==== EXPENSE TRACKER ====\n")
     print("1. Add Expense")
     print("2. View All Expenses")
     print("3. Search Expense")
@@ -12,13 +12,13 @@ while True:
     print("7. Delete Expense")
     print("8. Exit")
 
-    choice = input("Enter your choice: ")
+    choice = input("\nEnter your choice: ")
 
     if(choice == "8"):
         break
 
     elif(choice == "1"):
-        print("==== Add Expense ====")
+        print("\n==== Add Expense ====\n")
         expense_name = input("Enter Expense Name:")
         amt = float(input("Enter Amount:"))
         category = input("Enter Category:")
@@ -36,16 +36,21 @@ while True:
         
 
     elif(choice == "2"):
-        print("==== View All Expenses ====")
+        print("\n==== View All Expenses ====\n")
 
-        for expense in expenses:
-            print("Name: ", expense["name"])
-            print("Amount: ", expense["amount"])
-            print("Category: ", expense["category"])
-            print("Date: ", expense["date"])
+        if len(expenses) == 0:
+            print("No expense available!")
+
+        else:
+            for expense in expenses:
+                print("Name: ", expense["name"])
+                print("Amount: ", expense["amount"])
+                print("Category: ", expense["category"])
+                print("Date: ", expense["date"])
+        
 
     elif(choice == "3"):
-        print("==== Search Expense ====")
+        print("\n==== Search Expense ====\n")
 
         # print(expenses)
         search_name = input("Enter Expense name to search: ")
@@ -59,11 +64,11 @@ while True:
                 print("Date: ", expense["date"])
 
                 found = True
-            if found == False:
+        if found == False:
                 print("Not Found")
 
     elif(choice == "4"):
-        print("==== Total Expense ====")
+        print("\n==== Total Expense ====\n")
 
         total = 0
         for expense in expenses:
@@ -72,7 +77,7 @@ while True:
         print("Total Expense: ", total)
 
     elif(choice == "5"):
-        print("==== Category-wise Expense ====")
+        print("\n==== Category-wise Expense ====\n")
 
         category_name = input("Enter Category: ")
 
@@ -85,12 +90,41 @@ while True:
         print("Category Wise Expenses: ", total)
 
     elif(choice == "6"):
-        print("==== Highest Expense ====")
-        input("")
+        print("\n==== Highest Expense ====\n")
 
+        if len(expenses) == 0:
+            print("No expenses available!")
+
+        else:
+            highest = 0
+            highest_expense = None
+    
+            for expense in expenses:
+                if expense["amount"] > highest:
+                    highest = expense["amount"]
+                    highest_expense = expense
+                    
+            print("Highest Expense: ", highest)
+            print("Name:", highest_expense["name"])
+            print("Amount:", highest_expense["amount"])
+            print("Category:", highest_expense["category"])
+            print("Date:", highest_expense["date"])
+        
     elif(choice == "7"):
-        print("==== Delete Expense ====")
-        input("")
+        print("\n==== Delete Expense ====\n")
+
+        del_expense = input("Enter the expense you want to delete:")
+
+        found = False
+        for expense in expenses:
+            if(del_expense.lower() == expense["name"].lower()):
+                expenses.remove(expense)
+
+                found = True
+                print("\nExpense Deleted Successfully!\n")
+
+        if found == False:
+                print("Expense Not Found!")
 
     else:
         print("Invalid Choice")
