@@ -33,7 +33,7 @@ while True:
 
         expenses.append(expense)
         print("Expense Added Successfully!")
-        print(expenses)
+        
 
     elif(choice == "2"):
         print("==== View All Expenses ====")
@@ -47,7 +47,7 @@ while True:
     elif(choice == "3"):
         print("==== Search Expense ====")
 
-        print(expenses)
+        # print(expenses)
         search_name = input("Enter Expense name to search: ")
 
         found = False
@@ -64,11 +64,25 @@ while True:
 
     elif(choice == "4"):
         print("==== Total Expense ====")
-        input("")
+
+        total = 0
+        for expense in expenses:
+            total = total + expense["amount"]
+
+        print("Total Expense: ", total)
 
     elif(choice == "5"):
         print("==== Category-wise Expense ====")
-        input("")
+
+        category_name = input("Enter Category: ")
+
+        total = 0
+
+        for expense in expenses:
+            if(category_name.lower() == expense["category"].lower()):
+                total = total + expense["amount"]
+
+        print("Category Wise Expenses: ", total)
 
     elif(choice == "6"):
         print("==== Highest Expense ====")
