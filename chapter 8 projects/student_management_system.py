@@ -86,6 +86,89 @@ def update_student():
     if found == False:
         print("Student Not Found!")
 
+def delete_student():
+    print("\n==== DELETE STUDENT ====\n")
+
+    delete_id = int(input("Enter the Student ID you want to delete: "))
+
+    found = False
+
+    for student in students:
+        if delete_id == student["ID"]:
+            students.remove(student)
+
+            found = True
+
+            print("\nStudent Deleted Successfully\n")
+
+    if found == False:
+        print("Student Not Found!")
+
+def calc_avg():
+    print("\n==== CALCULATE AVERAGE MARKS ====\n")
+
+    if len(students) == 0:
+        print("No Student Available!")
+    
+    else:
+        total_marks = 0
+
+        for student in students:
+            total_marks += student["Marks"]
+
+        avg = total_marks / len(students)
+
+        print("Average Marks: ", avg)
+
+def find_topper():
+    print("\n==== FIND TOPPER ====\n")
+
+    if len(students) == 0:
+        print("No Student Available")
+        return
+    
+    highest = 0
+    topper = None
+
+    for student in students:
+        if student["Marks"] > highest:
+            highest = student["Marks"]
+            topper = student
+
+    print("ID: ", topper["ID"])
+    print("Name: ", topper["Name"])
+    print("Age: ", topper["Age"])
+    print("Course: ", topper["Course"])
+    print("Marks: ", topper["Marks"])
+
+    print("\n==== TOPPER FOUND SUCCESSFULLY ====\n")        
+
+def find_failed():
+    print("\n==== FAILED STUDENTS ====\n")
+
+    if len(students) == 0:
+        print("No Student Available!")
+        return
+    
+    found = False
+
+    for student in students:
+        if student["Marks"] < 40:
+            print("ID:", student["ID"])
+            print("Name:", student["Name"])
+            print("Age:", student["Age"])
+            print("Course:", student["Course"])
+            print("Marks:", student["Marks"])
+
+            found = True
+
+    if found == False:
+        print("No Failed Students!")
+
+    else:
+        print("\n==== FAILED STUDENT FOUND SUCCESSFULLY! ====\n")
+
+
 while True:
     print("\n==== STUDENT MANAGEMENT SYSTEM ====\n")
     print("1. Add Students")
@@ -111,7 +194,19 @@ while True:
 
     elif choice == "4":
         update_student()
-    
+
+    elif choice == "5":
+        delete_student()
+
+    elif choice == "6":
+        calc_avg()
+
+    elif choice == "7":
+        find_topper()
+
+    elif choice == "8":
+        find_failed()
+
     elif choice == "9":
         break
 
