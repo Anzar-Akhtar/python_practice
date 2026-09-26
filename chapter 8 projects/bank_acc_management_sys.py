@@ -19,7 +19,7 @@ def create_acc():
 
     accounts.append(account)
     print("\n==== ACCOUNT ADDED SUCCESSFULLY ====\n")
-    print(accounts)
+
 
 def view_all_acc():
     print("\n==== VIEW ALL ACCOUNTS ====\n")
@@ -50,7 +50,7 @@ def search_acc():
                 print("Account NO: ", account["acc_no"])
                 print("Name: ", account["name"])
                 print("Age: ", account["age"])
-                print("Account Tyoe: ", account["acc_type"])
+                print("Account Type: ", account["acc_type"])
                 print("Balance: ", account["balance"])
 
                 print("\n==== ACCOUNT FOUND SUCCESSFULLY ====\n")
@@ -135,6 +135,62 @@ def check_bal():
         if found == False:
             print("Account Not found!")
 
+def update_acc():
+    print("\n==== UPDATE MONEY ====\n")
+
+    acc_no = int(input("Enter Your Account No. to Update Account: "))
+
+    if len(accounts) == 0:
+        print("No Account Available!")
+
+    else:
+        found = False
+        for account in accounts:
+            if(acc_no == account["acc_no"]):
+                new_name = input("Enter Your New Name: ")
+                new_age = int(input("Enter Your New Age: "))
+                new_acc_type = input("Enter Your New Account Type: ")
+
+
+                account["name"] = new_name
+                account["age"] = new_age
+                account["acc_type"] = new_acc_type
+
+
+                print("\n==== ACCOUNT UPDATED SUCCESSFULLY ====\n")
+
+                print("Account No.:", account["acc_no"])
+                print("Updated Name:", account["name"])
+                print("Updated Age:", account["age"])
+                print("Updated Account Type:", account["acc_type"])
+                print("Balance:", account["balance"])
+
+                found = True
+
+        if found == False:
+            print("Account Not found!")
+
+def delete_acc():
+    print("\n==== DELETE ACCOUNT ====\n")
+
+    if len(accounts) == 0:
+        print("No Accounts Available!")
+
+    else:
+        found = False
+        acc_no = int(input('Enter Your Account No. to Delete Your Account: '))
+
+        for account in accounts:
+            if(acc_no == account["acc_no"]):
+
+                accounts.remove(account)
+                found = True
+
+                print("\n==== ACCOUNT DELETED SUCCESSFULLY! ====\n")
+
+        if found == False:
+            print("Account Not Found!")
+
 while True:
     print("\n==== BANK ACCOUNT MANAGEMENT SYSTEM ====\n")
 
@@ -169,10 +225,10 @@ while True:
         check_bal()
 
     elif choice == "7":
-        pass
+        update_acc()
 
     elif choice == "8":
-        pass
+        delete_acc()
 
     elif choice == "9":
         break
