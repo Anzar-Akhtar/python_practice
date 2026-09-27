@@ -33,7 +33,7 @@ def view_all_employee():
             print("Employee's Name: ", employee["name"])
             print("Employee's Age: ", employee["age"])
             print("Employee's Department: ", employee["dep"])
-            print("Employee's Salary: ", employee["bas_sal"])
+            print("Employee's Salary: \n", employee["bas_sal"])
 
         print("\n==== EMPLOYEES PRINT SUCCESSFULLY ====\n")
 
@@ -126,6 +126,93 @@ def delete_employee():
         else:
             print("\n==== EMPLOYEE DELETED SUCCESSFULLY ====\n")
 
+def calc_salary():
+    print("\n==== CALCULATE SALARY ====\n")
+
+    emp_id = int(input("Enter Employee's ID to Calculate Salary: "))
+
+    if len(employees) == 0:
+        print("No Employees Available!")
+
+    else:
+        found = False
+        for employee in employees:
+            if(emp_id == employee["ID"]):
+                bonus = float(input("Enter Employee's Bonus: "))
+                deduction = float(input("Enter Employee's Deduction: "))
+
+                if(bonus < 0 or deduction < 0):
+                    print("Please Enter Valid Entries!")
+
+                else:
+                    net_salary = employee["bas_sal"] + bonus - deduction
+                    found = True
+                    break
+
+        if found == False:
+            print("Employee Not Found!")
+
+        else:
+            print("\n==== SALARY CALCULATED SUCCESSFULLY ====\n")
+            print("Employee's ID: ", employee["ID"])
+            print("Employee's Name: ", employee["name"])
+            print("Employee's Basic Salary: ", employee["bas_sal"])
+            print("Employee's Bonus: ", bonus)
+            print("Employee's Deduction: ", deduction)
+            print("Employee's Net Salary: ", net_salary)
+
+def high_paid_emp():
+    print("\n==== HIGHEST PAID EMPLOYEE ====\n")
+
+    if len(employees) == 0:
+        print("No Employee Available!")
+        return
+
+    highest = 0
+    rich = None
+
+    for employee in employees:
+        if employee["bas_sal"] > highest:
+            highest = employee["bas_sal"]
+            rich = employee
+
+    print("\n==== HIGHEST PAID EMPLOYEE FOUND SUCCESSFULLY ====\n")
+    print("Highest Salary's Employee ID:", rich["ID"])
+    print("Highest Salary's Employee Name:", rich["name"])
+    print("Highest Salary's Employee Age:", rich["age"])
+    print("Highest Salary's Employee Department:", rich["dep"])
+    print("Highest Salary's Employee Salary:", rich["bas_sal"])
+
+def show_emp_by_dep():
+    print("\n==== SHOW EMPLOYEE BY DEPARTMENT ====\n")
+
+    emp_dep = input("Enter Department of the Employees: ")
+
+    if len(employees) == 0:
+        print("No Employee Available!")
+
+    else:
+        found = False
+
+        for employee in employees:
+            if emp_dep.lower() == employee["dep"].lower():
+
+                print("Employee's ID:", employee["ID"])
+                print("Employee's Name:", employee["name"])
+                print("Employee's Age:", employee["age"])
+                print("Employee's Department:", employee["dep"])
+                print("Employee's Salary:", employee["bas_sal"])
+                print()
+
+                found = True
+
+        if found == False:
+            print("Employees Not Found!")
+
+        else:
+            print("\n==== EMPLOYEES FOUND SUCCESSFULLY ====\n")
+
+
 while True:
     print("\n==== EMPLOYEE MANAGEMENT & PAYROLL SYSTMEM ====\n")
 
@@ -157,13 +244,13 @@ while True:
         delete_employee()
 
     elif choice == "6":
-        pass
+        calc_salary()
 
     elif choice == "7":
-        pass
+        high_paid_emp()
 
     elif choice == "8":
-        pass
+        show_emp_by_dep()
 
     elif choice == "9":
         break
