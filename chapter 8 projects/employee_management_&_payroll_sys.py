@@ -3,12 +3,39 @@ employees = []
 def add_employee():
     print("\n==== ADD EMPLOYEE ====\n")
 
-    emp_id = int(input("Enter Employee ID: "))
-    name = input("Enter Employee Name: ")
-    age = int(input("Enter Employee's Age: "))
-    dep = input("Enter Employee Department: ")
-    bas_sal = float(input("Enter Employee's Salary: "))
+    try:
+        emp_id = int(input("Enter Employee ID: "))
 
+    except ValueError:
+        print("Please Enter a Valid Employee ID!")
+        return
+    
+    name = input("Enter Employee Name: ")
+
+    try:
+        age = int(input("Enter Employee's Age: "))
+
+        if age < 0:
+            print("Age Cannot be Negative!")
+            return
+        
+    except ValueError:
+        print("Please Enter a Valid Age!")
+        return
+    
+    dep = input("Enter Employee Department: ")
+
+    try:
+        bas_sal = float(input("Enter Employee's Salary: "))
+
+        if bas_sal < 0:
+            print("Salary Cannot be Negative!")
+            return
+
+    except ValueError:
+        print("Please Enter a Valid Salary!")
+        return
+    
     employee = {
         "ID": emp_id,
         "name": name,
