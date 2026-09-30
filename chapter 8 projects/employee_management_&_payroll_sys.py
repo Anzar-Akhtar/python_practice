@@ -96,6 +96,7 @@ def search_employee():
 
     try:
         emp_id = int(input("Enter Employee's ID to search: "))
+        
     except ValueError:
         print("Please Enter a Valid ID")
         return
