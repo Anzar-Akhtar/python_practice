@@ -5,12 +5,25 @@ def add_employee():
 
     try:
         emp_id = int(input("Enter Employee ID: "))
-
+        
     except ValueError:
         print("Please Enter a Valid Employee ID!")
         return
+
+    for employee in employees:
+        if emp_id == employee["ID"]:
+            print("Employee ID Already Exists!")
+            return
     
     name = input("Enter Employee Name: ")
+
+    if name == "":
+        print("Name Cannot Be Empty!")
+        return
+
+    if name.isdigit():
+        print("Name Cannot Contains Only Numbers!")
+        return
 
     try:
         age = int(input("Enter Employee's Age: "))
@@ -24,6 +37,14 @@ def add_employee():
         return
     
     dep = input("Enter Employee Department: ")
+
+    if dep == "":
+        print("Department Cannot Be Empty!")
+        return
+
+    if dep.isdigit():
+        print("Department Cannot Contain Only Numbers!")
+        return
 
     try:
         bas_sal = float(input("Enter Employee's Salary: "))
@@ -55,19 +76,29 @@ def view_all_employee():
         print("No Employee Available!")
 
     else:
+        total_sal = 0
+
         for employee in employees:
             print("Employee's ID: ", employee["ID"])
             print("Employee's Name: ", employee["name"])
             print("Employee's Age: ", employee["age"])
             print("Employee's Department: ", employee["dep"])
-            print("Employee's Salary: \n", employee["bas_sal"])
+            print("Employee's Salary: \n", f"₹{employee['bas_sal']:,.2f}")
+            total_sal += employee["bas_sal"]
 
+        print("Total Employees:", len(employees))
+        avg_sal = total_sal / len(employees)
+        print("Average Salary:", avg_sal)
         print("\n==== EMPLOYEES PRINT SUCCESSFULLY ====\n")
 
 def search_employee():
     print("\n==== SEARCH EMPLOYEE ====\n")
 
-    emp_id = int(input("Enter Employee's ID to search: "))
+    try:
+        emp_id = int(input("Enter Employee's ID to search: "))
+    except ValueError:
+        print("Please Enter a Valid ID")
+        return
 
     if len(employees) == 0:
         print("No Employees Available!")
@@ -80,7 +111,7 @@ def search_employee():
                 print("Employee's Name: ", employee["name"])
                 print("Employee's Age: ", employee["age"])
                 print("Employee's Department: ", employee["dep"])
-                print("Employee's Salary: ", employee["bas_sal"])
+                print("Employee's Salary: ",f"₹{employee['bas_sal']:,.2f}")
 
                 found = True
                 break
@@ -94,7 +125,11 @@ def search_employee():
 def update_employee():
     print("\n==== UPDATE EMPLOYEE ====\n")
 
-    emp_id = int(input("Enter Employee's ID to update: "))
+    try:
+        emp_id = int(input("Enter Employee's ID to update: "))
+    except ValueError:
+        print("Please Enter a Valid ID!")
+        return
 
     if len(employees) == 0:
         print("No Employees Available")
