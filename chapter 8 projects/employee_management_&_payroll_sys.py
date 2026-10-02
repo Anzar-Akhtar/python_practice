@@ -139,11 +139,63 @@ def update_employee():
         found = False
         for employee in employees:
             if(emp_id == employee["ID"]):
-                new_id = int(input("Enter New ID: "))
+                try:
+                    new_id = int(input("Enter New ID: "))
+
+                except ValueError:
+                    print("Please Enter a Valid ID!")
+                    return
+
+                for emp in employees:
+                    if new_id == emp["ID"] and emp_id != new_id:
+                        print("Employee ID Already Exists!")
+                        return
+
                 new_name = input("Enter New Name: ")
-                new_age = int(input("Enter New Age: "))
-                new_dep = input("Enter New Department: ")
-                new_bas_sal = float(input("Enter New Salary: "))
+                
+                if new_name == "":
+                    print("Name Cannot Be Empty!")
+                    return
+
+                if new_name.isdigit():
+                    print("Name Cannot Contains Only Numbers!")
+                    return
+                try:
+                    new_age = int(input("Enter New Age: "))
+
+                    if new_age < 0:
+                        print("Age Cannot be Negative!")
+                        return
+
+                except ValueError:
+                    print("Please Enter a Valid Age!")
+                    return
+
+                try:
+                    new_dep = input("Enter New Department: ")
+
+                    if new_dep == "":
+                        print("Department Cannot Be Empty!")
+                        return
+
+                    if new_dep.isdigit():
+                        print("Department Cannot Contain Only Numbers!")
+                        return
+                    
+                except ValueError:
+                    print("Please Enter a Valid Department!")
+                    return
+
+                try:
+                    new_bas_sal = float(input("Enter New Salary: "))
+
+                    if new_bas_sal < 0:
+                        print("Salary Cannot be Negative!")
+                        return
+
+                except ValueError:
+                    print("Please Enter a Valid Salary!")
+                    return
 
                 employee["ID"] = new_id
                 employee["name"] = new_name
@@ -165,34 +217,43 @@ def update_employee():
             print("Employee's New Department: ", employee["dep"])
             print("Employee's New Salary: ", employee["bas_sal"])
 
-
 def delete_employee():
     print("\n==== DELETE EMPLOYEE ====\n")
 
-    emp_id = int(input("Enter Employee's ID you want to Delete: "))
+    try:
+        emp_id = int(input("Enter Employee's ID you want to Delete: "))
+
+    except ValueError:
+        print("Please Enter a Valid ID!")
+        return
 
     if len(employees) == 0:
-        print("No Employees Availabel!")
+        print("No Employees Available!")
+
+    found = False
+
+    for employee in employees:
+        if(emp_id == employee["ID"]):
+            employees.remove(employee)
+
+            found = True
+            break
+
+    if found == False:
+        print("Employee Not Found")
 
     else:
-        found = False
-        for employee in employees:
-            if(emp_id == employee["ID"]):
-                employees.remove(employee)
-
-                found = True
-                break
-
-        if found == False:
-            print("Employee Not Found")
-
-        else:
-            print("\n==== EMPLOYEE DELETED SUCCESSFULLY ====\n")
+        print("\n==== EMPLOYEE DELETED SUCCESSFULLY ====\n")
 
 def calc_salary():
     print("\n==== CALCULATE SALARY ====\n")
 
-    emp_id = int(input("Enter Employee's ID to Calculate Salary: "))
+    try:
+        emp_id = int(input("Enter Employee's ID to Calculate Salary: "))
+
+    except ValueError:
+        print("Please Enter a Valid ID!")
+        return
 
     if len(employees) == 0:
         print("No Employees Available!")
@@ -201,11 +262,22 @@ def calc_salary():
         found = False
         for employee in employees:
             if(emp_id == employee["ID"]):
-                bonus = float(input("Enter Employee's Bonus: "))
-                deduction = float(input("Enter Employee's Deduction: "))
+                try:
+                    bonus = float(input("Enter Employee's Bonus: "))
+                except ValueError:
+                    print("Please Enter a Valid Bonus!")
+                    return
+
+                try:
+                    deduction = float(input("Enter Employee's Deduction: "))
+
+                except ValueError:
+                    print("Please Enter a Valid Deduction!")
+                    return
 
                 if(bonus < 0 or deduction < 0):
                     print("Please Enter Valid Entries!")
+                    return
 
                 else:
                     net_salary = employee["bas_sal"] + bonus - deduction
@@ -249,7 +321,20 @@ def high_paid_emp():
 def show_emp_by_dep():
     print("\n==== SHOW EMPLOYEE BY DEPARTMENT ====\n")
 
-    emp_dep = input("Enter Department of the Employees: ")
+    try:
+        emp_dep = input("Enter Department of the Employees: ")
+
+        if emp_dep == "":
+            print("Department Cannot Be Empty!")
+            return
+
+        if emp_dep.isdigit():
+            print("Department Cannot Contain Only Numbers!")
+            return
+
+    except ValueError:
+        print("Please Enter a Valid Department!")
+        return
 
     if len(employees) == 0:
         print("No Employee Available!")
