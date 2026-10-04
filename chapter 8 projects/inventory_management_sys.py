@@ -78,6 +78,149 @@ def add_products():
 
     print("\n==== PRODUCT ADDED SUCCESSFULLY ====\n")
 
+def view_all_products():
+    print("\n==== VIEW ALL PRODUCTS ====\n")
+
+    if len(products) == 0:
+        print("No Products Available!")
+        return
+
+    else:
+        for product in products:
+            print("Product ID: ", product["ID"])
+            print("Product Name: ", product["name"])
+            print("Product Category: ", product["category"])
+            print("Product Price: ", product["price"])
+            print("Product Quantity: ", product["quantity"])
+
+        print("\n==== PRODUCTS PRINTED  SUCCESSFULLY ====\n")
+    
+def search_product():
+    print("\n==== SEARCH PRODUCTS ====\n")
+
+    if len(products) == 0:
+        print("No Products Available!")
+        return
+    
+    try:
+        search_id = int(input("Enter Product ID to Search: "))
+
+    except ValueError:
+        print("Please Enter the Valid Product ID!!")
+        return
+
+    found = False
+    for product in products:
+        if(search_id == product["ID"]):
+            print("Product ID: ", product["ID"])
+            print("Product Name: ", product["name"])
+            print("Product Category: ", product["category"])
+            print("Product Price: ", product["price"])
+            print("Product Quantity: ", product["quantity"])
+
+            found = True
+            break
+
+    if found == False:
+        print("Product Not found!")
+        return
+
+    else:
+        print("\n==== PRODUCT SEARCHED SUCCESSFULLY ====\n")
+
+def update_product():
+    print("\n==== UPDATE PRODUCT ====\n")
+
+    if len(products) == 0:
+        print("No Product Available")
+        return
+
+    try:
+        update_id = int(input("Enter the Product ID you wants to Update: "))
+
+    except ValueError:
+        print("Please Enter the Valid Product ID")
+        return
+
+    found = False
+    for product in products:
+        if(update_id == product["ID"]):
+            try:
+                new_id = int(input("Enter the new ID: "))
+
+            except ValueError:
+                print("Please Enter the Valid ID")
+                return
+
+            for p in products:
+                if(new_id == p["ID"] and product["ID"] != new_id):
+                    print("ID Already Exists!")
+                    return
+
+            new_name = input("Enter the new Name: ")
+
+            if new_name == "":
+                print("Name Cannot Be Empty!")
+                return
+
+            if new_name.isdigit():
+                print("Name Cannot Contain Only Numbers")
+                return
+
+            new_cat = input("Enter new Category:")
+
+            if new_cat == "":
+                print("Category Cannot Be Empty!")
+                return
+
+            if new_cat.isdigit():
+                print("Category Cannot Cantain Only Number")
+                return
+
+            try:
+                new_price = int(input("Enter the new Proce: "))
+
+                if new_price < 0:
+                    print("Price Cannot Be Negative!")
+                    return
+
+            except ValueError:
+                print("Please Enter the Valid Price!!")
+                return
+
+            try:
+                new_quan = int(input("Enter the new Quantity: "))
+
+                if new_quan < 0:
+                    print("Quantity Cannot Be Negative!")
+                    return
+
+            except ValueError:
+                print("Please Enter the Valid Quantity")
+                return
+
+            product["ID"] = new_id
+            product["name"] = new_name
+            product["category"] = new_cat
+            product["price"] = new_price
+            product["quantity"] = new_quan
+
+            found = True
+            break
+
+    if found == False:
+        print("Product Not found!!")
+        return
+
+    else:
+        print("\n==== PRODUCT UPDATED SUCCESSFULLY ====\n")
+        print("Product New ID: ", product["ID"])
+        print("Product New Name: ", product["name"])
+        print("Product New Category: ", product["category"])
+        print("Product New Price: ", product["price"])
+        print("Product New Quantity: ", product["quantity"])
+            
+
 while True:
     print("==== INVENTORY MANAGEMENT SYSTEM ====")
     print("1. Add Product")
@@ -97,13 +240,13 @@ while True:
         add_products()
 
     if choice == "2":
-        pass
+        view_all_products()
 
     if choice == "3":
-        pass
+        search_product()
 
     if choice == "4":
-        pass
+        update_product()
 
     if choice == "5":
         pass
