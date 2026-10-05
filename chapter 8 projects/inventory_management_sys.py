@@ -249,7 +249,111 @@ def del_product():
     else:
         print("\n==== PRODUCT DELETED SUCCESSFULLY! ====\n")
 
+def sell_product():
+    print("\n==== SELL PRODUCT ====\n")
 
+    if len(products) == 0:
+        print("No Product Available!!")
+        return
+
+    try:
+        sell_id = int(input("Enter the Product ID to Sell:"))
+
+    except ValueError:
+        print("Please Enter the Valid ID!!")
+        return
+
+    found = False
+
+    for product in products:
+        if(sell_id == product["ID"]):
+            try:
+                quan = int(input("Enter the Quantity: "))
+
+                if quan <= 0:
+                    print("Quantity Must Be Greater Than 0!!")
+                    return
+
+                if quan > product["quantity"]:
+                    print("Insufficient Stock!!")
+                    return
+
+            except ValueError:
+                print("Please Enter the Valid Quantity!!!")
+                return
+
+            product["quantity"] -= quan
+            found = True
+            break
+
+    if found == False:
+        print("Product Not Found!!")
+        return
+    else:
+        print("\n==== PRODUCT SELLED SUCCESSFULLY ====\n")
+        print("Product ID:", product["ID"])
+        print("Product Name:", product["name"])
+        print("Quantity Sold:", quan)
+        print("Remaining Quantity:", product["quantity"])
+
+def restock_product():
+    print("\n==== RESTOCK PRODUCT ====\n")
+
+    try:
+        restock_id = int(input("Enter Product ID you wants to Restock: "))
+
+    except ValueError:
+        print("Please Enter the Valid ID!!")
+        return
+
+    found = False
+
+    for product in products:
+        if restock_id == product["ID"]:
+            try:
+                restock_quan = int(input("Enter the quantity of the product to restock: "))
+
+                if restock_quan <= 0:
+                    print("Quantity Must Be Greater Than 0!!")
+                    return
+
+            except ValueError:
+                print("Please Enter the Valid Quantity!!!")
+                return
+
+            product["quantity"] += restock_quan
+            found = True
+            break
+
+    if found == False:
+        print("Product Not Found!!")
+        return
+    
+    else:
+        print("\n==== PRODUCT RESTOCKED SUCCESSFULLY ====\n")
+        print("Product ID:", product["ID"])
+        print("Product Name:", product["name"])
+        print("Product Restock:", restock_quan)
+        print("New Product Quantity:", product["quantity"])
+
+def low_stock():
+    print("\n==== LOW STOCK PRODUCTS ====\n")
+
+    if len(products) == 0:
+        print("No Product Available!")
+        return
+
+    for product in products:
+        if product["quantity"] < 5:
+            print("Product ID:", product["ID"])
+            print("Product Name:", product["name"])
+            print("Product Category:", product["category"])
+            print("Product Price:", product["price"])
+            print("Product Quantity:", product["quantity"])
+
+        else:
+            print("No Low Products Found!!")
+            return
 
 while True:
     print("==== INVENTORY MANAGEMENT SYSTEM ====")
@@ -282,10 +386,10 @@ while True:
         del_product()
 
     if choice == "6":
-        pass
+        sell_product()
 
     if choice == "7":
-        pass
+        restock_product()
 
     if choice == "8":
         pass
