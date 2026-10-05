@@ -220,6 +220,36 @@ def update_product():
         print("Product New Price: ", product["price"])
         print("Product New Quantity: ", product["quantity"])
             
+def del_product():
+    print("\n==== DELETE PRODUCT ====\n")
+
+    if len(products) == 0:
+        print("No Product Available!!")
+        return
+
+    try:
+        dlt_id = int(input("Enter the Product ID you want Delete: "))
+
+    except ValueError:
+        print("Please Enter the Valid Product ID!!")
+        return
+
+    found = False
+    for product in products:
+        if(dlt_id == product["ID"]):
+            products.remove(product)
+
+            found = True
+            break
+
+    if found == False:
+        print("Product Not Found!")
+        return
+
+    else:
+        print("\n==== PRODUCT DELETED SUCCESSFULLY! ====\n")
+
+
 
 while True:
     print("==== INVENTORY MANAGEMENT SYSTEM ====")
@@ -249,7 +279,7 @@ while True:
         update_product()
 
     if choice == "5":
-        pass
+        del_product()
 
     if choice == "6":
         pass
