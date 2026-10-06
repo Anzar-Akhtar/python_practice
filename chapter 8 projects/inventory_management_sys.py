@@ -178,7 +178,7 @@ def update_product():
                 return
 
             try:
-                new_price = int(input("Enter the new Proce: "))
+                new_price = float(input("Enter the new Proce: "))
 
                 if new_price < 0:
                     print("Price Cannot Be Negative!")
@@ -343,6 +343,8 @@ def low_stock():
         print("No Product Available!")
         return
 
+    found = False
+
     for product in products:
         if product["quantity"] < 5:
             print("Product ID:", product["ID"])
@@ -351,9 +353,23 @@ def low_stock():
             print("Product Price:", product["price"])
             print("Product Quantity:", product["quantity"])
 
-        else:
-            print("No Low Products Found!!")
-            return
+            found = True
+
+    if found == False:
+        print("No Low Products Found!!")
+
+def total_inv_value():
+    print("\n==== TOTAL INVENTORY VALUE ====\n")
+
+    if len(products) == 0:
+        print("No Product Available!!")
+        return
+
+    total_value = 0
+    for product in products:
+        total_value += product["price"] * product["quantity"]
+
+    print("Total Value: ", total_value)
 
 while True:
     print("==== INVENTORY MANAGEMENT SYSTEM ====")
@@ -373,31 +389,31 @@ while True:
     if choice == "1":
         add_products()
 
-    if choice == "2":
+    elif choice == "2":
         view_all_products()
 
-    if choice == "3":
+    elif choice == "3":
         search_product()
 
-    if choice == "4":
+    elif choice == "4":
         update_product()
 
-    if choice == "5":
+    elif choice == "5":
         del_product()
 
-    if choice == "6":
+    elif choice == "6":
         sell_product()
 
-    if choice == "7":
+    elif choice == "7":
         restock_product()
 
-    if choice == "8":
-        pass
+    elif choice == "8":
+        low_stock()
 
-    if choice == "9":
-        pass
+    elif choice == "9":
+        total_inv_value()
 
-    if choice == "10":
+    elif choice == "10":
         print("\n==== THANK YOU FOR USING INVENTORY MANAGEMENT SYSTEM! ====")
         break
 
