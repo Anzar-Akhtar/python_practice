@@ -352,7 +352,7 @@ while True:
         update_patient()
 
     elif choice == "5":
-        pass
+        delete_patient()
 
     elif choice == "6":
         pass
