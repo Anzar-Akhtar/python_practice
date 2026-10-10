@@ -296,6 +296,33 @@ def update_patient():
 
     print("\n==== PATIENT UPDATED SUCCESSFULLY ====\n")
 
+def delete_patient():
+    print("\n==== DELETE PATIENT ====\n")
+
+    if len(patients) == 0:
+        print("No Patient Available!")
+        return
+    
+    try:
+        dlt_id = int(input("Enter The Patient ID you want to Delete: "))
+
+    except ValueError:
+        print("Please Enter The Valid ID!!")
+        return
+    
+    found = False
+    for patient in patients:
+        if(dlt_id == patient["ID"]):
+            patients.remove(patient)
+            found = True
+            break
+
+    if found == False:
+        print("Patient Not Found!!")
+        return
+
+    print("\n==== PATIENT DELETED SUCCESSFULLY ====\n")
+
 while True:
     print("\n==== HOSPITAL MANAGEMENT SYSTEM ====\n")
     print("1. Add Patient")
