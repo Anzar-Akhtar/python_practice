@@ -323,6 +323,87 @@ def delete_patient():
 
     print("\n==== PATIENT DELETED SUCCESSFULLY ====\n")
 
+def book_appointment():
+    print("\n==== BOOK APPOINTMNET ====\n")
+
+    if len(patients) == 0:
+        print("No Patient Registered!!")
+        return
+
+    try:
+        appointment_id = int(input("Enter Appointment ID: "))
+
+    except ValueError:
+        print("Please Enter the Valid Appointment ID!!")
+        return
+
+    for appointment in appointments:
+        if(appointment_id == appointment["appointment_id"]):
+            print("Appointment ID Already Exist!!")
+            return
+
+    try:
+        patient_id = int(input("Enter Patient ID: "))
+
+    except ValueError:
+        print("Please Enter a Valid Patient ID!!")
+        return
+
+    patient_found = None
+    for patient in patients:
+        if patient_id == patient["ID"]:
+            patient_found == patient
+            break
+
+    if patient_found is None:
+        print("Patient Not Found! Please Register First!!")
+        return
+
+    appointment_date = input(
+        "Enter Appointment Date (YYYY-MM-DD): "
+    ).strip()
+
+    if appointment_date == "":
+        print("Appointment Date Cannot Be Empty!!")
+        return
+
+    appointment_time = input(
+        "Enter Appointment Time (HH:MM): "
+    ).strip()
+
+    if appointment_time == "":
+        print("Appointment Time Cannot Be Empty!!")
+        return
+
+    dr_name = patient_found["doctor"]
+
+    for appointment in appointments:
+        if(
+            appointment["doctor"] == dr_name
+            and appointment["date"] == appointment_date
+            and appointment["time"] == appointment_time
+        ):
+            print("This Doctor's Time Slot Is Already Booked!")
+            return
+
+    appointment = {
+        "appointment_id": appointment_id,
+        "patient_id": patient_id,
+        "doctor": dr_name,
+        "date": appointment_date,
+        "time": appointment_time
+    }
+
+    appointments.append(appointment)
+
+    print("\n==== APPOINTMENT BOOKED SUCCESSFULLY ====\n")
+    print("Appointment ID:", appointment_id)
+    print("Patient ID:", patient_id)
+    print("Patient Name:", patient_found["name"])
+    print("Doctor Name:", dr_name)
+    print("Appointment Date:", appointment_date)
+    print("Appointment Time:", appointment_time)
+
 while True:
     print("\n==== HOSPITAL MANAGEMENT SYSTEM ====\n")
     print("1. Add Patient")
@@ -355,7 +436,7 @@ while True:
         delete_patient()
 
     elif choice == "6":
-        pass
+        book_appointment()
 
     elif choice == "7":
         pass
