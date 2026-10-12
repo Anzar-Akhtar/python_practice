@@ -404,6 +404,109 @@ def book_appointment():
     print("Appointment Date:", appointment_date)
     print("Appointment Time:", appointment_time)
 
+def cancel_appointment():
+    print("\n==== CANCEL APPOINTMNET ====\n")
+
+    if len(appointments) == 0:
+        print("No Appoitments Available!!")
+        return
+
+    try:
+        cancel_id = int(input("Enter Appointment ID to Cancel: "))
+
+    except ValueError:
+        print("Please Enter a Valid Appointment ID!!")
+        return
+
+    found = False
+    for appointment in appointments:
+        if(cancel_id == appointment["appointment_id"]):
+            appointments.remove(appointment)
+            found = True
+            break
+
+    if not found:
+        print("Appointment Not Found!!")
+        return
+
+    print("\n==== APPOINTMENT CANCELLED SUCCESSFULLY ====\n")
+
+def generate_bill():
+    print("\n==== GENERATE PATIENT BILL ====\n")
+
+    if len(patients) == 0:
+        print("No Patient Available!!")
+        return
+
+    try:
+        bill_id = int(input("Enter Patient ID to Generate Bill: "))
+
+    except ValueError:
+        print("Please Enter a Valid ID")
+        return
+
+    found = False
+    total_bill = 0
+    for patient in patients:
+        if(bill_id == patient["ID"]):
+            print("Patient ID: ", patient["ID"])
+            print("Patient Name: ", patient["name"])
+            print("Dr. Name: ", patient["doctor"])
+            print("Fees: ", patient["fee"])
+
+            total_bill = patient["fee"]
+            found = True
+            break
+
+    if not found:
+        print("No Patient Found!!")
+        return
+
+    print("\nTotal Bill is: ", total_bill)
+    print("\n==== BILL GENERATED SUCCESSFULLY ====\n")
+
+def patient_by_dr():
+    print("\n==== SHOW PATIENTS BY DOCTOR ====\n")
+
+    if len(patients) == 0:
+        print("No Patients Available!!")
+        return
+
+    try:
+        dr_name = input("Enter Doctor Name: ").strip()
+
+        if dr_name == "":
+            print("Doctor Name Cannot Be Empty!!")
+            return
+
+        if dr_name.isdigit():
+            print("Doctor Name Cannot Contain Only Numbers!!")
+            return
+
+    except ValueError:
+        print("Please Enter a Valid Doctor Name!!!")
+        return
+
+    found = False
+    for patient in patients:
+        if(dr_name.islower() == patient["doctor"].islower()):
+
+            print("Patient ID: ", patient["ID"])
+            print("Patient Name: ", patient["name"])
+            print("Patient Age: ", patient["age"])
+            print("Patient gender: ", patient["gender"])
+            print("Patient Desease: ", patient["disease"])
+            print("Patient's Doctor Name: ", patient["doctor"])
+            print("Patient's Doctor Fees: ", patient["fee"])
+
+            found = True
+
+    if not found:
+        print("No Patient Found For This Doctor!!")
+        return
+
+    print("\n==== PATIENTS PRINTED SUCCESSFULLY ====\n")
+
 while True:
     print("\n==== HOSPITAL MANAGEMENT SYSTEM ====\n")
     print("1. Add Patient")
@@ -439,13 +542,13 @@ while True:
         book_appointment()
 
     elif choice == "7":
-        pass
+        cancel_appointment()
 
     elif choice == "8":
-        pass
+        generate_bill()
 
     elif choice == "9":
-        pass
+        patient_by_dr()
 
     elif choice == "10":
         pass
