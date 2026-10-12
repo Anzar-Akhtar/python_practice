@@ -556,4 +556,3 @@ while True:
     elif choice == "11":
         print("\n==== THANK YOU FOR USING HOSPITAL MANAGEMENT SYSTEM ====\n")
         break
-    
