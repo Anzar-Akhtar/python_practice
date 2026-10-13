@@ -511,6 +511,7 @@ def total_revenue():
     print("\n==== SHOW TOTAL REVENUE ====\n")
     pass
 
+
 while True:
     print("\n==== HOSPITAL MANAGEMENT SYSTEM ====\n")
     print("1. Add Patient")
