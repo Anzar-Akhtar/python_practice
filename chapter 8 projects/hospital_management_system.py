@@ -509,7 +509,17 @@ def patient_by_dr():
 
 def total_revenue():
     print("\n==== SHOW TOTAL REVENUE ====\n")
-    pass
+
+    if len(patients) == 0:
+        print("No Patients Available!")
+        return
+
+    total_revenue = 0
+    for patient in patients:
+        total_revenue += patient["fee"]
+
+    print("Total Revenue: ", total_revenue)
+    print("\n==== REVENUE PRINTED SUCCESSFULLY ====\n")
 
 while True:
     print("\n==== HOSPITAL MANAGEMENT SYSTEM ====\n")
@@ -555,7 +565,7 @@ while True:
         patient_by_dr()
 
     elif choice == "10":
-        pass
+        total_revenue()
 
     elif choice == "11":
         print("\n==== THANK YOU FOR USING HOSPITAL MANAGEMENT SYSTEM ====\n")
