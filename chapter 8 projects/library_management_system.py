@@ -56,6 +56,53 @@ def add_book():
     books.append(book)
     print("\n==== BOOK ADDED SUCCESSFULLY ====\n")
 
+def view_all_books():
+    print("\n==== VIEW ALL BOOKS ====\n")
+
+    if len(books) == 0:
+        print("No Books Available!!")
+        return
+
+    for book in books:
+        print("Book ID: ", book["ID"])
+        print("Book TItle: ", book["title"])
+        print("Book Author: ", book["author"])
+        print("Book Title: ", book["title"])
+
+    print("\n==== BOOKS PRINTED SUCCESSFULLY ====\n")
+
+def search_book():
+    print("\n==== SEARCH BOOK ====\n")
+
+    if len(books) == 0:
+        print("No Books Available!!")
+        return
+
+    try:
+        search_id = int(input("Enter the Book ID to Search: "))
+
+    except ValueError:
+        print("Please Enter Valid ID!!")
+        return
+    
+    found = False
+    for book in books:
+        if(search_id == book["ID"]):
+            print("Book ID: ", book["ID"])
+            print("Book TItle: ", book["title"])
+            print("Book Author: ", book["author"])
+            print("Book Title: ", book["title"])
+
+            found = True
+            break
+
+    if found == False:
+        print("Book Not Found!!")
+        return
+
+    else:
+        print("\n==== BOOK FOUNDED SUCCESSFULLY ====\n")
+
 while True:
     print("\n==== LIBRARY MANAGEMENT SYSTEM ====\n")
     print("1. Add Book")
