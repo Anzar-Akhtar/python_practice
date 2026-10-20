@@ -103,6 +103,34 @@ def search_book():
     else:
         print("\n==== BOOK FOUNDED SUCCESSFULLY ====\n")
 
+def delete_book():
+    print("\n==== DELETE BOOK ====\n")
+
+    if len(books) == 0:
+        print("No Books Available!!")
+        return
+
+    try:
+        dlt_id = int(input("Enter the ID you want to Delete: "))
+
+    except ValueError:
+        print("Please Enter Valid ID!!")
+        return
+
+    found = False
+    for book in books:
+        if(dlt_id == book["ID"]):
+            books.remove(book)
+            found = True
+            break
+
+    if found == False:
+        print("Book Not Found!!")
+        return
+
+    else:
+        print("\n==== BOOK DELETED SUCCESSFULLY ====\n")
+
 while True:
     print("\n==== LIBRARY MANAGEMENT SYSTEM ====\n")
     print("1. Add Book")
@@ -125,16 +153,16 @@ while True:
         add_book()
 
     elif choice == "2":
-        pass
+        view_all_books()
 
     elif choice == "3":
-        pass
+        search_book()
 
     elif choice == "4":
         pass
 
     elif choice == "5":
-        pass
+        delete_book()
 
     elif choice == "6":
         pass
