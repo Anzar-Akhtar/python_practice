@@ -1,4 +1,5 @@
 books = []
+members = []
 
 def add_book():
     print("\n==== ADD BOOK ====\n")
@@ -65,9 +66,9 @@ def view_all_books():
 
     for book in books:
         print("Book ID: ", book["ID"])
-        print("Book TItle: ", book["title"])
-        print("Book Author: ", book["author"])
         print("Book Title: ", book["title"])
+        print("Book Author: ", book["author"])
+        print("Book Quantity: ", book["quantity"])
 
     print("\n==== BOOKS PRINTED SUCCESSFULLY ====\n")
 
@@ -206,6 +207,53 @@ def delete_book():
     else:
         print("\n==== BOOK DELETED SUCCESSFULLY ====\n")
 
+def reg_member():
+    print("\n==== REGISTER MEMBER ====\n")
+
+    try:
+        mem_id = int(input("Enter Member ID: "))
+
+        if mem_id <= 0:
+            print("Member ID Cannot Be Negative!!")
+            return
+
+    except ValueError:
+        print("Please Enter Valid ID!!")
+        return
+
+    for m in members:
+        if(mem_id == m["ID"]):
+            print("ID Already Exist!!")
+            return
+
+    mem_name = input("Enter Member Name: ")
+
+    if mem_name.strip() == "":
+        print("Name Cannot Be Empty!!")
+        return
+
+    if mem_name.isdigit():
+        print("Name Cannot Contain Only Numbers!!")
+        return
+
+    mem_no = input("Enter Your Contact Number: ")
+
+    if mem_no.strip() == "":
+        print("Contact Number Cannot Be Empty!!")
+        return
+
+    if not mem_no.isdigit() or len(mem_no) != 10:
+        print("Please Enter a Valid 10-Digit Contact Number!!")
+        return
+
+    member = {
+        "ID": mem_id,
+        "name": mem_name,
+        "contact": mem_no
+    }
+    members.append(member)
+    print("\n==== MEMBER REGISTERED SUCCESSFULLY ====\n")
+
 while True:
     print("\n==== LIBRARY MANAGEMENT SYSTEM ====\n")
     print("1. Add Book")
@@ -240,7 +288,7 @@ while True:
         delete_book()
 
     elif choice == "6":
-        pass
+        reg_member()
 
     elif choice == "7":
         pass
