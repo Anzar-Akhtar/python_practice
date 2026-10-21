@@ -103,6 +103,81 @@ def search_book():
     else:
         print("\n==== BOOK FOUNDED SUCCESSFULLY ====\n")
 
+def update_book():
+    print("\n==== UPDATE BOOK ====\n")
+
+    if len(books) == 0:
+        print("No Book Available!!")
+        return
+
+    try:
+        update_id = int(input("Enter The ID you wants to Update: "))
+
+    except ValueError:
+        print("Please Enter Valid ID!!")
+        return
+
+    found = False
+    for book in books:
+        if(update_id == book["ID"]):
+            try:
+                new_id = int(input("Enter Book ID: "))
+        
+            except ValueError:
+                print("Please Enter the Valid ID")
+                return
+            
+            for b in books:
+                if(new_id == b["ID"]):
+                    print("ID Already Exists!")
+                    return
+
+            new_title = input("Enter New Title: ")
+
+            if new_title.strip() == "":
+                print("Title Cannot Be Empty!!")
+                return
+
+            if new_title.isdigit():
+                print("Name Cannot Contain Only Numbers!!")
+                return
+
+            new_author = input("Enter New Author: ")
+
+            if new_author.strip() == "":
+                print("Author Cannot Be Empty!!")
+                return
+
+            if new_author.isdigit():
+                print("Author Name Cannot Contain Only Numbers!!")
+                return
+
+            try:
+                new_quan = int(input("Enter New Quantity: "))
+
+                if new_quan < 0 :
+                    print("Quantity Cannot Be Negative!!")
+                    return
+
+            except ValueError:
+                print("Please Enter Valid Quantity!!")
+                return
+
+            book["ID"] = new_id
+            book["title"] = new_title
+            book["author"] = new_author
+            book["quantity"] = new_quan
+
+            found = True
+            break
+
+    if found == False:
+        print("Book Not Found!!")
+        return
+
+    else:
+        print("\n==== BOOK UPDATED SUCCESSFULLY ====\n")
+
 def delete_book():
     print("\n==== DELETE BOOK ====\n")
 
@@ -159,7 +234,7 @@ while True:
         search_book()
 
     elif choice == "4":
-        pass
+        update_book()
 
     elif choice == "5":
         delete_book()
