@@ -1,5 +1,6 @@
 books = []
 members = []
+issued_book = []
 
 def add_book():
     print("\n==== ADD BOOK ====\n")
@@ -254,6 +255,63 @@ def reg_member():
     members.append(member)
     print("\n==== MEMBER REGISTERED SUCCESSFULLY ====\n")
 
+def issue_book():
+    print("\n==== ISSUE BOOK ====\n")
+
+    if len(books) == 0:
+        print("No Book Available!!")
+        return
+
+    if len(members) == 0:
+        print("No Member Registered!!")
+        return
+
+    try:
+        book_id = int(input("Enter Book ID: "))
+
+        if book_id <= 0:
+            print("Book ID Must Be Positive!!")
+            return
+
+    except ValueError:
+        print("Please Enter a Valid ID!!")
+        return
+
+    found = False
+    for book in books:
+        if(book_id == book["ID"]):
+            found = True
+            break
+    if not found:
+        print("Book Not Found!!")
+        return
+           
+    if(book["quantity"] <= 0):
+        print("Book Not Available!!")
+        return
+    
+    try:
+        mem_id = int(input("Enter Member ID: "))
+
+        if mem_id <= 0:
+            print("Member ID Must Be Positive!!")
+            return
+
+    except ValueError:
+        print("Please Enter Valid ID!!")
+        return
+
+    mem_found = False
+    for member in members:
+        if(mem_id == member["ID"]):
+            mem_found = True
+            break
+
+    if not mem_found:
+        print("Member Not found!!")
+        return
+        
+            
 while True:
     print("\n==== LIBRARY MANAGEMENT SYSTEM ====\n")
     print("1. Add Book")
