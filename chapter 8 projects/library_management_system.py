@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 books = []
 members = []
 issued_book = []
@@ -310,7 +311,28 @@ def issue_book():
     if not mem_found:
         print("Member Not found!!")
         return
-        
+
+    issue_date = datetime.now().date()
+    due_date = issue_date + timedelta(days=14)
+
+    issue_record = {
+        "book_id": book_id,
+        "member_id": mem_id,
+        "issue_date": issue_date.isoformat(),
+        "due_date": due_date.isoformat()
+    }
+
+    issued_book.append(issue_record)
+
+    book["quantity"] -= 1
+
+    print("\n==== BOOK ISSUED SUCCESSFULLY ====")
+    print("Book ID:", book_id)
+    print("Member ID:", mem_id)
+    print("Issue Date:", issue_date)
+    print("Due Date:", due_date)
+    print("Available Quantity:", book["quantity"])
+    print()
             
 while True:
     print("\n==== LIBRARY MANAGEMENT SYSTEM ====\n")
@@ -349,7 +371,7 @@ while True:
         reg_member()
 
     elif choice == "7":
-        pass
+        issue_book()
 
     elif choice == "8":
         pass
