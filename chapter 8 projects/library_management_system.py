@@ -333,7 +333,12 @@ def issue_book():
     print("Due Date:", due_date)
     print("Available Quantity:", book["quantity"])
     print()
-            
+
+def return_book():
+    print("\n==== RETURN BOOK ====\n")
+
+    pass
+
 while True:
     print("\n==== LIBRARY MANAGEMENT SYSTEM ====\n")
     print("1. Add Book")
@@ -374,7 +379,7 @@ while True:
         issue_book()
 
     elif choice == "8":
-        pass
+        return_book()
 
     elif choice == "9":
         pass
