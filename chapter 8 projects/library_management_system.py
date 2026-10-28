@@ -379,7 +379,7 @@ def return_book():
     print("Available Quantity: ", book["quantity"])
     print()
 
-def show_available_book():
+def show_available_books():
     print("\n==== SHOW AVAILABLE BOOKS ====\n")
 
     if len(books) == 0:
@@ -402,6 +402,38 @@ def show_available_book():
         return
 
     print("\n==== AVAILABLE BOOK DISPLAYED SUCCESSFULLY ====\n")
+
+def show_overdue_books():
+    print("\n==== OVERDUE BOOKS ====\n")
+
+    if len(issued_books) == 0:
+        print("No Books Are Currently Available!!")
+        return
+
+    today = datetime.now().date()
+
+    found = False
+    for record in issued_books:
+        due_date = datetime.strptime(
+            record["due_date"], "%Y-%m-%d"
+        ).date()
+
+        if today > due_date:
+            found = True
+
+            print("Book_ID:", record["book_id"])
+            print("Member ID:", record["member_id"])
+            print("Issued Date:", record["issue_date"])
+            print("Due Date:", record["due_date"])
+            print("Days Overdue:", (today - due_date).days)
+            print()
+
+    if not found:
+        print("No Overdue Books Found!!")
+        return
+
+    print("\n==== OVERDUE BOOKS DISPLAYED SUCCESSFULLY ====\n")
+
 
 while True:
     print("\n==== LIBRARY MANAGEMENT SYSTEM ====\n")
@@ -446,10 +478,10 @@ while True:
         return_book()
 
     elif choice == "9":
-        pass
+        show_available_books()
 
     elif choice == "10":
-        pass
+        show_overdue_books()
 
     elif choice == "11":
         pass
