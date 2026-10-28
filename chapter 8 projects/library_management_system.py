@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 books = []
 members = []
-issued_book = []
+issued_books = []
 
 def add_book():
     print("\n==== ADD BOOK ====\n")
@@ -337,7 +337,71 @@ def issue_book():
 def return_book():
     print("\n==== RETURN BOOK ====\n")
 
-    pass
+    if len(issued_books) == 0:
+        print("No Books Have Been Issued!")
+        return
+
+    try:
+        book_id = int(input("Enter Book ID: "))
+
+    except ValueError:
+        print("Please Enter a Valid Book ID!!")
+        return
+
+    try:
+        mem_id = int(input("Enter Member ID: "))
+
+    except ValueError:
+        print("Please Enter a Valid Member ID!!")
+        return
+
+    found = False
+    for record in issued_books:
+        if record["book_id"] == book_id and record["member_id"] == mem_id:
+            found = True
+            break
+
+    if not Found:
+        print("Issue Record Not Found!!")
+        print("Please Check Book ID and Member ID.")
+        return
+
+    for book in books:
+        if book["ID"] == book_id:
+            book["quantity"] += 1
+            break
+
+    issued_books.remove(record)
+
+    print("\n==== BOOK RETURNED SUCCESSFULLY ====")
+    print("Book ID: ", book_id)
+    print("Member ID: ", mem_id)
+    print("Available Quantity: ", book["quantity"])
+    print()
+
+def show_available_book():
+    print("\n==== SHOW AVAILABLE BOOKS ====\n")
+
+    if len(books) == 0:
+        print("No Books Available!!")
+        return
+
+    found = False
+    for book in books:
+        if book["quantity"] > 0:
+            print("Book ID:", book["ID"])
+            print("Book Title:", book["title"])
+            print("Book Author:", book["author"])
+            print("Available Quantity:", book["quantity"])
+            print()
+
+            found = True
+
+    if not found:
+        print("No Book Currently Available!!")
+        return
+
+    print("\n==== AVAILABLE BOOK DISPLAYED SUCCESSFULLY ====\n")
 
 while True:
     print("\n==== LIBRARY MANAGEMENT SYSTEM ====\n")
