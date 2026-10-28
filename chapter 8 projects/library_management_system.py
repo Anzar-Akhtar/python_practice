@@ -434,6 +434,15 @@ def show_overdue_books():
 
     print("\n==== OVERDUE BOOKS DISPLAYED SUCCESSFULLY ====\n")
 
+def cal_fine():
+    print("\n==== CALCULATE FINE ====\n")
+
+    pass
+
+def save_and_load_data():
+    print("\n==== SAVE AND LOAD DATA ====\n")
+
+    pass
 
 while True:
     print("\n==== LIBRARY MANAGEMENT SYSTEM ====\n")
@@ -484,12 +493,11 @@ while True:
         show_overdue_books()
 
     elif choice == "11":
-        pass
+        cal_fine()
 
     elif choice == "12":
-        pass
+        save_and_load_data()
 
     elif choice == "13":
         print("\n==== THANK YOU FOR USING LIBRARY MANAGEMENT SYSTEM ====\n")
         break
-
