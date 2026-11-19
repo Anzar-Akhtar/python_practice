@@ -156,7 +156,6 @@ def update_acc():
                 account["age"] = new_age
                 account["acc_type"] = new_acc_type
 
-
                 print("\n==== ACCOUNT UPDATED SUCCESSFULLY ====\n")
 
                 print("Account No.:", account["acc_no"])
