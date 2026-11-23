@@ -1,8 +1,8 @@
 from functools import reduce
 
 # q1:- square of number using map()
-numbers = [1, 2, 3, 4, 5]
-res = map(lambda x: x*x, numbers)
+numbers1 = [1, 2, 3, 4, 5]
+res = map(lambda x: x*x, numbers1)
 print(list(res))
 
 # q2:- convert all names into uppercase using map()
@@ -28,3 +28,18 @@ print(res5)
 # q6:- calculate the product of all numbers using reduce()
 res6 = reduce(lambda a,b: a*b, numbers4)
 print(res6)
+
+
+
+numbers = [10, 20, 30, 40, 50, 60]
+
+# Step 1: Filter numbers greater than 25
+filtered = filter(lambda x: x > 25, numbers)
+
+# Step 2: Multiply each number by 2
+mapped = map(lambda x: x * 2, filtered)
+
+# Step 3: Calculate total sum
+result = reduce(lambda a, b: a + b, mapped)
+
+print("Final Result:", result)
