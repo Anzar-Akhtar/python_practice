@@ -31,6 +31,7 @@ print(res6)
 
 
 
+
 numbers = [10, 20, 30, 40, 50, 60]
 
 # Step 1: Filter numbers greater than 25
