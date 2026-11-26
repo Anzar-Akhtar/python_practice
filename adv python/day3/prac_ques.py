@@ -43,4 +43,5 @@ mapped = map(lambda x: x * 2, filtered)
 # Step 3: Calculate total sum
 result = reduce(lambda a, b: a + b, mapped)
 
+
 print("Final Result:", result)
